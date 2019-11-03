@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Dog : MonoBehaviour
 {
@@ -24,17 +25,35 @@ public class Dog : MonoBehaviour
     private CapsuleCollider2D cc2d;
     // 剛體元件
     private Rigidbody2D r2d;
+    
+    public AudioClip SoundJump, SoundSlide;
+    private AudioSource audioSource;       //音源
+
+    private SpriteRenderer sr;
+
+    [Header("生命值")]
+    public float hp = 500;
+    private float maxHp;
+    [Header("障礙物傷害值")]
+    public float damage = 20;
+    // 生命條
+    public Image hpBar;
     #endregion
 
     // 起始事件: 開始時執行一次
     private void Start()
     {
+        maxHp = hp;
+
         // 取得攝影機物件
         cam = GameObject.Find("Main Camera").transform;
         // 取得元件, GetComponent<T>() 泛型
         ani = GetComponent<Animator>();
         cc2d = GetComponent<CapsuleCollider2D>();
         r2d = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+
+        audioSource = GetComponent<AudioSource>();
     }
     // 更新事件: 每一禎執行一次 unity預設為60fps
     private void Update()
@@ -57,6 +76,34 @@ public class Dog : MonoBehaviour
     }
 
     /// <summary>
+    /// 角色受傷
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "障礙物")
+        {
+            PlayerDamage();
+            sr.enabled = false;
+            Invoke("ShowSprite", .2f);  // 延遲調用
+        }
+    }
+    /// <summary>
+    /// 顯示Sprite
+    /// </summary>
+    private void ShowSprite()
+    {
+        sr.enabled = true;
+    }
+
+    private void PlayerDamage()
+    {
+        Debug.Log("受傷~~");
+        hp -= damage;
+        hpBar.fillAmount = hp / maxHp;
+    }
+
+    /// <summary>
     /// 角色移動方法
     /// </summary>
     private void MoveMan() {
@@ -72,7 +119,7 @@ public class Dog : MonoBehaviour
     }
 
     /// <summary>
-    /// 角色跳躍方法
+    /// 角色跳躍方法, 音效
     /// </summary>
     public void DoJump() {
         if (isGround == true)
@@ -80,11 +127,12 @@ public class Dog : MonoBehaviour
             ani.SetBool("跳躍開關", true);
             r2d.AddForce(new Vector2(0, jumpHigh));
             isGround = false;
+            audioSource.PlayOneShot(SoundJump, 0.6f);
         }
     }
 
     /// <summary>
-    /// 角色滑行方法,設定滑行時collider大小
+    /// 角色滑行方法,設定滑行時collider大小, 音效
     /// </summary>
     public void DoSlide() {
         transform.Translate(slide*Time.deltaTime, 0 ,0);
@@ -92,9 +140,8 @@ public class Dog : MonoBehaviour
 
         cc2d.offset = new Vector2(-0.52f, -0.85f);
         cc2d.size = new Vector2(2.2f, 2.2f);
-        
-        //cc2d.offset.Set(-0.52f, -0.85f);
-        //cc2d.size.Set(2.2f, 2.2f);
+
+        audioSource.PlayOneShot(SoundSlide);
     }
     /// <summary>
     /// 重置角色跳躍與滑行,重置collider大小
@@ -106,8 +153,5 @@ public class Dog : MonoBehaviour
 
         cc2d.offset = new Vector2(-0.52f, 0.15f);
         cc2d.size = new Vector2(2.2f, 4.2f);
-
-        //cc2d.offset.Set(-0.52f, 0.15f);
-        //cc2d.size.Set(2.2f, 4.2f);
     }
 }
