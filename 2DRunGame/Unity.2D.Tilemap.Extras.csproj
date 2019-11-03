@@ -75,13 +75,13 @@
     <Compile Include="Assets\2d-extras\Runtime\Tiles\WeightedRandomTile\WeightedRandomTile.cs" />
     <None Include="Assets\2d-extras\Runtime\Brushes\TintedTilemap.shader" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/unityfile/LCC_2DGameRun/2DRunGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/GitHub/LCC_2DGameRun/2DRunGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/unityfile/LCC_2DGameRun/2DRunGame/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/GitHub/LCC_2DGameRun/2DRunGame/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/unityfile/LCC_2DGameRun/2DRunGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/GitHub/LCC_2DGameRun/2DRunGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
