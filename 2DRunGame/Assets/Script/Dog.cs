@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using System.Collections;
 
 public class Dog : MonoBehaviour
 {
@@ -18,7 +19,19 @@ public class Dog : MonoBehaviour
     public bool isGround;
     [Header("名稱")]
     public string dogName = "Jaga";
-    
+    [Header("生命值")]
+    public float hp = 500;
+    private float maxHp;
+    [Header("障礙物傷害值")]
+    public float damage = 20;
+    [Header("拼接地圖")]
+    public Tilemap tileProp;
+    [Header("道具")]
+    public int countDiamond, countCherry;
+    public Text textDiamond, textCherry;
+    [Header("遺失血量大小")]
+    public float loseHp = 20;
+
     //變型欄位
     private Transform cam;
     // 動畫控制器元件
@@ -29,25 +42,16 @@ public class Dog : MonoBehaviour
     private Rigidbody2D r2d;
     
     public AudioClip SoundJump, SoundSlide;
+    //public AudioClip SoundDiamond;
     private AudioSource audioSource;       //音源
 
     private SpriteRenderer sr;
-
-    [Header("生命值")]
-    public float hp = 500;
-    private float maxHp;
-    [Header("障礙物傷害值")]
-    public float damage = 20;
     // 生命條
     public Image hpBar;
-    [Header("拼接地圖")]
-    public Tilemap tileProp;
 
-    [Header("道具")]
-    public int countDiamond, countCherry;
-    public Text textDiamond, textCherry;
-    [Header("遺失血量大小")]
-    public float loseHp = 20;
+    public GameObject finalPanal;
+    private int scoreDiamond, scoreCherry, scoreTime, scoreTotal;
+    public Text textFinalDiamond, textFinalCherry, textFinalTime, textFinalTotal;
     #endregion
 
     // 起始事件: 開始時執行一次
@@ -82,7 +86,7 @@ public class Dog : MonoBehaviour
         if (collision.gameObject.name == "地板")
         {
             isGround = true;
-            Debug.Log(collision.gameObject.name);
+            //Debug.Log(collision.gameObject.name);
         }
         if (collision.gameObject.name == "道具")
         {
@@ -91,7 +95,7 @@ public class Dog : MonoBehaviour
     }
     
     /// <summary>
-    /// 碰撞監聽 (onTrigger)
+    /// 碰撞監聽 (isTrigger)
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -107,6 +111,12 @@ public class Dog : MonoBehaviour
             EatDiamond(collision);
             countDiamond++;
             textDiamond.text = countDiamond.ToString();
+        }
+        if (collision.name == "死亡陷阱")
+        {
+            hp = 0;
+            speed = 0;
+            ani.SetBool("死亡開關", true);
         }
     }
 
@@ -154,9 +164,11 @@ public class Dog : MonoBehaviour
     /// </summary>
     private void PlayerDamage()
     {
-        Debug.Log("受傷~~");
+        //Debug.Log("受傷~~");
         hp -= damage;
         hpBar.fillAmount = hp / maxHp;
+
+        PlayerDead();
     }
 
     /// <summary>
@@ -178,11 +190,13 @@ public class Dog : MonoBehaviour
     /// 角色跳躍方法, 音效
     /// </summary>
     public void DoJump() {
+        if (hp <= 0) return;      // hp<=0 跳出此敘述
         if (isGround == true)
         {
             ani.SetBool("跳躍開關", true);
             r2d.AddForce(new Vector2(0, jumpHigh));
             isGround = false;
+
             audioSource.PlayOneShot(SoundJump, 0.6f);
         }
     }
@@ -191,6 +205,7 @@ public class Dog : MonoBehaviour
     /// 角色滑行方法,設定滑行時collider大小, 音效
     /// </summary>
     public void DoSlide() {
+        if (hp <= 0) return;
         transform.Translate(slide*Time.deltaTime, 0 ,0);
         ani.SetBool("滑行開關", true);
 
@@ -219,5 +234,71 @@ public class Dog : MonoBehaviour
     {
         hp -= Time.deltaTime * loseHp;
         hpBar.fillAmount = hp / maxHp;
+
+        PlayerDead();
     }
+
+    private void PlayerDead()
+    {
+        if (hp <= 0)
+        {
+            ani.SetBool("死亡開關", true);
+            speed = 0;
+            Final();
+        }
+    }
+    /// <summary>
+    /// 跳出結算畫面
+    /// </summary>
+    private void Final()
+    {
+            if (finalPanal.activeInHierarchy == false)
+            {
+                finalPanal.SetActive(true);
+                //Debug.Log("遊戲結束~~");
+                // 啟動執行緒
+                StartCoroutine(FinalCalculation(countDiamond, scoreDiamond, 100, textFinalDiamond));   
+                StartCoroutine(FinalCalculation(countCherry, scoreCherry, 500, textFinalCherry, countDiamond * 0.3f));  // countDiamond 設定等待時間
+        }
+    }
+    
+    /// <summary>
+    /// 結算分數
+    /// </summary>
+    /// <param name="count"></param>
+    /// <param name="score"></param>
+    /// <param name="addscore"></param>
+    /// <param name="textFinal"></param>
+    /// <returns></returns>
+    private IEnumerator FinalCalculation(int count, int score, int addscore, Text textFinal, float waitTime = 0)
+    {
+        yield return new WaitForSeconds(waitTime);
+        while (count > 0)
+        {
+        count--;
+        score += addscore;
+        textFinal.text = score.ToString();
+        //audioSource.PlayOneShot(SoundDiamond);
+        // 使用協同程序延遲計分動作
+        yield return new WaitForSeconds(0.3f);
+        }
+    }
+    /*
+    /// <summary>
+    /// 結算鑽石
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator FinalDiamond()
+    {
+        while (countDiamond > 0)
+        {
+            countDiamond--;
+            scoreDiamond += 100;
+            textFinalDiamond.text = scoreDiamond.ToString();
+            //audioSource.PlayOneShot(SoundDiamond);
+            // 使用協同程序延遲計分動作
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    */
 }
