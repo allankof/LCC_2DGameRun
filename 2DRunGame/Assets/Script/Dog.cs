@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 public class Dog : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Dog : MonoBehaviour
     public bool isGround;
     [Header("名稱")]
     public string dogName = "Jaga";
+    
     //變型欄位
     private Transform cam;
     // 動畫控制器元件
@@ -38,6 +40,14 @@ public class Dog : MonoBehaviour
     public float damage = 20;
     // 生命條
     public Image hpBar;
+    [Header("拼接地圖")]
+    public Tilemap tileProp;
+
+    [Header("道具")]
+    public int countDiamond, countCherry;
+    public Text textDiamond, textCherry;
+    [Header("遺失血量大小")]
+    public float loseHp = 20;
     #endregion
 
     // 起始事件: 開始時執行一次
@@ -60,10 +70,11 @@ public class Dog : MonoBehaviour
     {
         MoveMan();
         MoveCamera();
-        
+        LoseHpByTime();
     }
+
     /// <summary>
-    /// 碰撞地板監聽
+    /// 碰撞地板監聽,碰撞道具
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
@@ -73,10 +84,14 @@ public class Dog : MonoBehaviour
             isGround = true;
             Debug.Log(collision.gameObject.name);
         }
+        if (collision.gameObject.name == "道具")
+        {
+            EatCherry(collision);
+        }
     }
-
+    
     /// <summary>
-    /// 角色受傷
+    /// 碰撞監聽 (onTrigger)
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -87,7 +102,45 @@ public class Dog : MonoBehaviour
             sr.enabled = false;
             Invoke("ShowSprite", .2f);  // 延遲調用
         }
+        if (collision.tag == "鑽石")
+        {
+            EatDiamond(collision);
+            countDiamond++;
+            textDiamond.text = countDiamond.ToString();
+        }
     }
+
+    /// <summary>
+    /// 吃道具方法,找出碰撞點與法線位置求出碰撞目標中心座標
+    /// </summary>
+    private void EatCherry(Collision2D collision)
+    {
+        // 中心點
+        Vector3 center = Vector3.zero;
+        // 碰撞座標
+        Vector3 hitPoint = collision.contacts[0].point;
+        //Debug.Log(hitPoint);
+        // 取得法線座標
+        Vector3 pos = collision.contacts[0].normal;
+        // 計算中心點
+        center.x = hitPoint.x - pos.x * 0.01f;
+        center.y = hitPoint.y - pos.y * 0.01f;
+        // 設定拼接(座標,無) 取消碰撞目標
+        tileProp.SetTile(tileProp.WorldToCell(center), null);
+
+        countCherry++;
+        textCherry.text = countCherry.ToString();
+    }
+
+    /// <summary>
+    /// 吃鑽石方法
+    /// </summary>
+    /// <param name="collision"></param>
+    private void EatDiamond(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
+    }
+
     /// <summary>
     /// 顯示Sprite
     /// </summary>
@@ -96,6 +149,9 @@ public class Dog : MonoBehaviour
         sr.enabled = true;
     }
 
+    /// <summary>
+    /// 角色受傷方法
+    /// </summary>
     private void PlayerDamage()
     {
         Debug.Log("受傷~~");
@@ -143,6 +199,7 @@ public class Dog : MonoBehaviour
 
         audioSource.PlayOneShot(SoundSlide);
     }
+
     /// <summary>
     /// 重置角色跳躍與滑行,重置collider大小
     /// </summary>
@@ -153,5 +210,14 @@ public class Dog : MonoBehaviour
 
         cc2d.offset = new Vector2(-0.52f, 0.15f);
         cc2d.size = new Vector2(2.2f, 4.2f);
+    }
+
+    /// <summary>
+    /// 隨時間遺失生命
+    /// </summary>
+    private void LoseHpByTime()
+    {
+        hp -= Time.deltaTime * loseHp;
+        hpBar.fillAmount = hp / maxHp;
     }
 }
