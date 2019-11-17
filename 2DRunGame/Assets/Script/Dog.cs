@@ -32,6 +32,7 @@ public class Dog : MonoBehaviour
     [Header("遺失血量大小")]
     public float loseHp = 20;
 
+
     //變型欄位
     private Transform cam;
     // 動畫控制器元件
@@ -41,7 +42,7 @@ public class Dog : MonoBehaviour
     // 剛體元件
     private Rigidbody2D r2d;
     
-    public AudioClip SoundJump, SoundSlide;
+    public AudioClip SoundJump, SoundSlide, SoundCoin, SoundScore;
     //public AudioClip SoundDiamond;
     private AudioSource audioSource;       //音源
 
@@ -50,7 +51,8 @@ public class Dog : MonoBehaviour
     public Image hpBar;
 
     public GameObject finalPanal;
-    private int scoreDiamond, scoreCherry, scoreTime, scoreTotal;
+    //private int scoreDiamond, scoreCherry, scoreTime, scoreTotal;
+    public int[] score = new int[4];
     public Text textFinalDiamond, textFinalCherry, textFinalTime, textFinalTotal;
     #endregion
 
@@ -247,6 +249,7 @@ public class Dog : MonoBehaviour
             Final();
         }
     }
+
     /// <summary>
     /// 跳出結算畫面
     /// </summary>
@@ -257,30 +260,41 @@ public class Dog : MonoBehaviour
                 finalPanal.SetActive(true);
                 //Debug.Log("遊戲結束~~");
                 // 啟動執行緒
-                StartCoroutine(FinalCalculation(countDiamond, scoreDiamond, 100, textFinalDiamond));   
-                StartCoroutine(FinalCalculation(countCherry, scoreCherry, 500, textFinalCherry, countDiamond * 0.3f));  // countDiamond 設定等待時間
+                StartCoroutine(FinalCalculation(countDiamond, 0, 100, textFinalDiamond, SoundCoin));   
+                StartCoroutine(FinalCalculation(countCherry, 1, 500, textFinalCherry, SoundCoin, countDiamond * 0.2f));  // countDiamond 設定等待時間
+                int time = (int)Time.timeSinceLevelLoad;          // 載入場景才開始重新計時  
+                StartCoroutine(FinalCalculation(time, 2, 500, textFinalTime, SoundScore, countDiamond * 0.2f + countCherry * 0.2f));
         }
     }
-    
+
     /// <summary>
     /// 結算分數
     /// </summary>
-    /// <param name="count"></param>
-    /// <param name="score"></param>
-    /// <param name="addscore"></param>
-    /// <param name="textFinal"></param>
+    /// <param name="count">執行次數</param>
+    /// <param name="scoreIndex">儲存的分數的索引</param>
+    /// <param name="addscore">分數加權</param>
+    /// <param name="textFinal">文字介面</param>
+    /// <param name="wait">等待時間</param>
+    /// <param name="waitTime">間隔時間</param>
     /// <returns></returns>
-    private IEnumerator FinalCalculation(int count, int score, int addscore, Text textFinal, float waitTime = 0)
+    private IEnumerator FinalCalculation(int count, int scoreIndex, int addscore, Text textFinal, AudioClip sound,float wait = 0, float waitTime = 0.2f)
     {
         yield return new WaitForSeconds(waitTime);
         while (count > 0)
         {
-        count--;
-        score += addscore;
-        textFinal.text = score.ToString();
+        count--;                                                  // 數量 
+        score[scoreIndex] += addscore;                            // 分數遞增
+        textFinal.text = score[scoreIndex].ToString();            // 更新介面
         //audioSource.PlayOneShot(SoundDiamond);
         // 使用協同程序延遲計分動作
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f);                    // 等待時間
+        }
+        if (scoreIndex != 3) score[3] += score[scoreIndex];
+        if (scoreIndex == 2)
+        {
+            int total = score[3] / 100;
+            score[3] = 0;
+            StartCoroutine(FinalCalculation(total, 3, 100, textFinalTotal, SoundScore, 0, 0.05f));
         }
     }
     /*
