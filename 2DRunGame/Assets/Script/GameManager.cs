@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public Text textLoading;
     public Image imageLoading;
+    //public GameObject tip;
 
     /// <summary>
     /// 重新開始
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartLoading()
     {
-
+        StartCoroutine(Loading());
     }
 
     public IEnumerator Loading()
@@ -42,10 +43,19 @@ public class GameManager : MonoBehaviour
 
         while (ao.isDone == false)                                        // 當 尚未載入完成
         {
-            textLoading.text = ao.progress + "/ 100";                     // 更新文字介面
+            textLoading.text = ao.progress / 0.9f * 100 + "/ 100";        // 更新文字介面 progress=載入進度 0~0.9
+            imageLoading.fillAmount = ao.progress / 0.9f;                 // 更新進度條
 
             yield return null;                                            // 等待 (null為一個fram)
+
+            if (ao.progress == 0.9f)
+            {
+                //tip.SetActive(true);
+
+                if(Input.anyKey) ao.allowSceneActivation = true;
+            }
         }
+
     }
     
 }

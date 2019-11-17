@@ -1965,18 +1965,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpCount: 2
   jumpHigh: 1200
-  speed: 0
+  speed: 10
   slide: 5
   isGround: 0
   dogName: Jaga
   hp: 500
   damage: 20
   tileProp: {fileID: 1872748972}
-  countDiamond: 8
-  countCherry: 5
+  countDiamond: 0
+  countCherry: 0
   textDiamond: {fileID: 1607846257}
   textCherry: {fileID: 2055663135}
-  loseHp: 200
+  loseHp: 50
   SoundJump: {fileID: 8300000, guid: 5c44b0d18f8e8d5479035b07143ec1fb, type: 3}
   SoundSlide: {fileID: 8300000, guid: a5e71b9d63d38ef4aa700d8cca5d5c97, type: 3}
   SoundCoin: {fileID: 8300000, guid: a4c981c380c253e4a8c38bfe0bec7ea1, type: 3}
@@ -5962,7 +5962,7 @@ Tilemap:
       - {fileID: 21300000, guid: 273ba8fade558457eb836eefe69bba7f, type: 3}
       - {fileID: 21300000, guid: 4f35b6058a719446ba48dc4dc2704635, type: 3}
       - {fileID: 21300000, guid: 056b6a3f6e14d4af2a7d641c4dd44e79, type: 3}
-      m_AnimationSpeed: 14.000001
+      m_AnimationSpeed: 14
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 3, y: 1, z: 0}
