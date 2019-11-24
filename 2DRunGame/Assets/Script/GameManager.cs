@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public Text textLoading;
     public Image imageLoading;
-    //public GameObject tip;
+    public GameObject tip;
 
     /// <summary>
     /// 重新開始
@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
         AsyncOperation ao = SceneManager.LoadSceneAsync("關卡1");         // 取得載入場景的資料
         ao.allowSceneActivation = false;                                  // 取消載入
 
+        
+
         while (ao.isDone == false)                                        // 當 尚未載入完成
         {
             textLoading.text = ao.progress / 0.9f * 100 + "/ 100";        // 更新文字介面 progress=載入進度 0~0.9
@@ -50,9 +52,9 @@ public class GameManager : MonoBehaviour
 
             if (ao.progress == 0.9f)
             {
-                //tip.SetActive(true);
+                tip.SetActive(true);
 
-                if(Input.anyKey) ao.allowSceneActivation = true;
+                if(Input.anyKey) ao.allowSceneActivation = true;          // 按任意鍵繼續
             }
         }
 

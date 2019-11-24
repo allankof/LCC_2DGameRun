@@ -25,6 +25,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Tilemaps.AnimatedTile
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.EventTrigger
@@ -475,7 +476,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 27f30bcda3b1dac98a964d5872280ace
+      Hash: 8f1563b29045818c5455929c9cd509e5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
