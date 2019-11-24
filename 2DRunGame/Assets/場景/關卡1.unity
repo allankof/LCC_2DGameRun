@@ -1489,8 +1489,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -301, y: -162}
-  m_SizeDelta: {x: 120, y: 75}
+  m_AnchoredPosition: {x: -299, y: -162}
+  m_SizeDelta: {x: 180, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &509169815
 MonoBehaviour:
@@ -1529,18 +1529,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 48
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 56
-    m_Alignment: 5
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7E3D\u5206"
+  m_Text: Total Score
 --- !u!222 &509169817
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2183,7 +2183,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u96E2\u958B\u904A\u6232"
+  m_Text: QUIT
 --- !u!222 &971162795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2727,8 +2727,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -323, y: -74}
-  m_SizeDelta: {x: 216, y: 75}
+  m_AnchoredPosition: {x: -299, y: -74}
+  m_SizeDelta: {x: 180, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1235776062
 MonoBehaviour:
@@ -2767,18 +2767,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 48
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 56
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u904A\u6232\u6642\u9593"
+  m_Text: TIME
 --- !u!222 &1235776064
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2932,7 +2932,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6ED1\u884C"
+  m_Text: SLIDE
 --- !u!222 &1300924345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3600,7 +3600,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u91CD\u65B0\u958B\u59CB"
+  m_Text: Restart
 --- !u!222 &1707164795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5954,7 +5954,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8DF3\u8E8D"
+  m_Text: JUMP
 --- !u!222 &1861314611
 CanvasRenderer:
   m_ObjectHideFlags: 0

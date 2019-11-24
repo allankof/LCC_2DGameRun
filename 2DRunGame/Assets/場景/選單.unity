@@ -488,7 +488,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -2, y: -104}
-  m_SizeDelta: {x: 280, y: 160}
+  m_SizeDelta: {x: 300, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &389479478
 MonoBehaviour:
@@ -4067,7 +4067,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4078,7 +4078,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u958B\u59CB\u904A\u6232"
+  m_Text: START
 --- !u!222 &1861314611
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4519,7 +4519,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000066757, y: -216.5}
-  m_SizeDelta: {x: 420, y: 86}
+  m_SizeDelta: {x: 450, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2056579022
 MonoBehaviour:
@@ -4543,10 +4543,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 52
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 5
+    m_MinSize: 4
     m_MaxSize: 52
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -4554,7 +4554,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8ACB\u6309\u4EFB\u610F\u9375"
+  m_Text: Press AnyKey
 --- !u!222 &2056579023
 CanvasRenderer:
   m_ObjectHideFlags: 0

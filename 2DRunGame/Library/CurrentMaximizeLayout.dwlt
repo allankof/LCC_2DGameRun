@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 1526
+  controlID: 5728
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 444}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 1527
+  controlID: 5709
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -194,9 +194,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.43, y: -1.03, z: 0}
+    m_Target: {x: 3.0704145, y: -0.8832746, z: 0}
     speed: 2
-    m_Value: {x: -6.43, y: -1.03, z: 0}
+    m_Value: {x: 3.0704145, y: -0.8832746, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 1454
+  controlID: 5729
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -366,21 +366,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 76f7ffff84faffff48fbffff2a3800009e380000
+      m_ExpandedIDs: a8dcffff28ddffff16e4fffffae7ffffdae9fffff0eaffff2eebffffd4ebffff04ecffffbcecffffe2f0ffff48fbffff56360000bc3600003c3b0000b03b00008c440000524b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: "\u8056\u8A95"
+        m_OriginalName: "\u8056\u8A95"
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 19072
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -552,9 +552,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 9e3b0000
-    m_LastClickedInstanceID: 15262
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
