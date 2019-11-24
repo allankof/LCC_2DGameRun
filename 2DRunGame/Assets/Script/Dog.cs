@@ -294,7 +294,7 @@ public class Dog : MonoBehaviour
         {
             int total = score[3] / 100;
             score[3] = 0;
-            StartCoroutine(FinalCalculation(total, 3, 100, textFinalTotal, SoundScore, 0, 0.05f));
+            StartCoroutine(FinalCalculation(total, 3, 100, textFinalTotal, SoundScore, 0, 0.04f));
         }
     }
     /*
