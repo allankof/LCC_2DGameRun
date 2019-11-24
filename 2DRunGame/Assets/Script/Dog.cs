@@ -261,9 +261,9 @@ public class Dog : MonoBehaviour
                 //Debug.Log("遊戲結束~~");
                 // 啟動執行緒
                 StartCoroutine(FinalCalculation(countDiamond, 0, 100, textFinalDiamond, SoundCoin));   
-                StartCoroutine(FinalCalculation(countCherry, 1, 500, textFinalCherry, SoundCoin, countDiamond * 0.2f));  // countDiamond 設定等待時間
+                StartCoroutine(FinalCalculation(countCherry, 1, 500, textFinalCherry, SoundCoin, countDiamond * 0.1f));  // countDiamond 設定等待時間
                 int time = (int)Time.timeSinceLevelLoad;          // 載入場景才開始重新計時  
-                StartCoroutine(FinalCalculation(time, 2, 500, textFinalTime, SoundScore, countDiamond * 0.2f + countCherry * 0.2f));
+                StartCoroutine(FinalCalculation(time, 2, 500, textFinalTime, SoundScore, countDiamond * 0.1f + countCherry * 0.1f));
         }
     }
 
@@ -287,14 +287,14 @@ public class Dog : MonoBehaviour
         textFinal.text = score[scoreIndex].ToString();            // 更新介面
         //audioSource.PlayOneShot(SoundDiamond);
         // 使用協同程序延遲計分動作
-        yield return new WaitForSeconds(0.3f);                    // 等待時間
+        yield return new WaitForSeconds(0.2f);                    // 等待時間
         }
         if (scoreIndex != 3) score[3] += score[scoreIndex];
         if (scoreIndex == 2)
         {
             int total = score[3] / 100;
             score[3] = 0;
-            StartCoroutine(FinalCalculation(total, 3, 100, textFinalTotal, SoundScore, 0, 0.04f));
+            StartCoroutine(FinalCalculation(total, 3, 100, textFinalTotal, SoundScore, 0, 0.02f));
         }
     }
     /*

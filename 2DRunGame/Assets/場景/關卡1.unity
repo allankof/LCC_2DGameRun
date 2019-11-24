@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textLoading: {fileID: 0}
   imageLoading: {fileID: 0}
+  tip: {fileID: 0}
 --- !u!4 &16025098
 Transform:
   m_ObjectHideFlags: 0
