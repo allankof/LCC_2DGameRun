@@ -694,4 +694,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - "Assets/\u5834\u666F/\u9078\u55AE.unity"
   - "Assets/\u5834\u666F/\u95DC\u53611.unity"
-  playerPath: C:/github_unity/LCC_2DGameRun/RunGame2D
+  playerPath: D:/github_unity/LCC_2DGameRun/LCC_2DRunGame
