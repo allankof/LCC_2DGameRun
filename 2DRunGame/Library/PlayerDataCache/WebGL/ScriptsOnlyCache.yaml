@@ -25,7 +25,6 @@ ScriptsOnlyBuild:
     - UnityEngine.Tilemaps.AnimatedTile
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.EventTrigger
@@ -694,4 +693,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - "Assets/\u5834\u666F/\u9078\u55AE.unity"
   - "Assets/\u5834\u666F/\u95DC\u53611.unity"
-  playerPath: D:/github_unity/LCC_2DGameRun/LCC_2DRunGame
+  playerPath: D:/github_unity/LCC_2DGameRun/RunGame2D
